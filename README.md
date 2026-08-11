@@ -6,36 +6,28 @@
 
 - **kha-law-update** — 법령 개정안·시행령안을 회원사 안내용 「개정안 주요내용」으로 정리
 
-## 팀원 사용법 (최초 1회)
+## 팀원 설치 방법 (최초 1회, CLI·데스크탑 앱 공용)
 
 1. 이 저장소 우측 상단 **[Code] → [Download ZIP]** 클릭
-2. 원하는 폴더에 압축 해제 (예: `C:\kha-skills\`)
-3. Claude Code 실행 시 `--add-dir` 옵션으로 이 폴더를 추가
+2. 원하는 폴더에 압축 해제 (경로는 어디든 상관없습니다. 예: `C:\kha-skills\`)
+3. 압축 해제한 폴더를 열고, 주소창을 클릭해 `powershell`이라고 입력한 뒤 Enter
+   (또는 그 폴더 안 빈 곳에서 마우스 우클릭 → **터미널에서 열기**)
+4. 열린 창에 아래를 입력하고 Enter
 
-   ```bash
-   claude --add-dir "C:\kha-skills"
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\setup.ps1
    ```
 
-4. 매번 입력하기 번거로우면 바탕화면에 `.bat` 파일을 만들어 두세요.
-
-   `kha-law-update-실행.bat` 파일을 만들고 아래 내용을 넣은 뒤, 평소 작업 폴더에서 더블클릭하면 됩니다.
-
-   ```bat
-   @echo off
-   cd /d "%~dp0"
-   claude --add-dir "C:\kha-skills"
-   ```
-
-   (`cd /d "%~dp0"`는 이 bat 파일이 있는 폴더에서 시작한다는 뜻입니다. 원하는 작업 폴더에 이 bat 파일을 복사해두고 쓰세요.)
-
-5. 정상적으로 연결되면 Claude Code가 법령 개정안 파일을 줄 때 `kha-law-update` 스킬을 자동으로 사용합니다. 직접 부르려면 `/kha-law-update`.
+5. "등록 완료"가 뜨면 끝입니다. **이후로는 아무것도 다시 입력할 필요가 없습니다.**
+   Claude Code(터미널이든 데스크탑 앱이든)를 새로 시작하면 어떤 폴더에서 작업하든 이 스킬을 자동으로 씁니다.
+6. 자동으로 안 뜨면 대화창에 `/kha-law-update`라고 입력하세요.
 
 ## 업데이트 받는 법
 
 스킬 기준이 바뀌면 이 저장소에 새로 반영됩니다. 그때마다:
 
 1. 이 저장소에서 **[Code] → [Download ZIP]**로 다시 받기
-2. 기존 `C:\kha-skills` 폴더 내용을 덮어쓰기 (또는 폴더를 통째로 교체)
+2. 기존 폴더 내용을 덮어쓰기 (`setup.ps1`은 다시 실행할 필요 없음 — 폴더 경로가 같으면 이미 등록되어 있습니다)
 
 ## 스킬 관리자용 — 로컬에서 수정하는 법
 
@@ -52,3 +44,4 @@ git push
 ## 주의
 
 - `references/samples/`의 예시 문서에는 확인된 사실오류가 있습니다. 형식(대번호 흐름·제목 방식·표 선택)만 참고하고, 조문·수치는 재사용하지 않습니다. 상세는 [`references/sample-notes.md`](.claude/skills/kha-law-update/references/sample-notes.md).
+- `setup.ps1`은 `~/.claude/settings.json`에 `permissions.additionalDirectories`를 추가합니다. 기존 설정을 지우지 않고 병합하지만, 이미 커스텀 설정을 해두셨다면 실행 전 해당 파일을 백업해두세요.
