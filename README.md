@@ -1,6 +1,6 @@
 # kha-skills
 
-대한주택협회 업무용 Claude Code 스킬 모음.
+한국주택협회 업무용 Claude Code 스킬 모음.
 
 ## 포함된 스킬
 
